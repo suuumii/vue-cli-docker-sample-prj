@@ -1,0 +1,22 @@
+version: '3.8'
+
+volumes:
+    vue-cli-node-volume:
+
+services:
+    app:
+        image: vuecli:1
+        build: 
+            context: .
+            dockerfile: dockerfile
+        container_name: vuecli3
+        ports:
+            - "8080:8080"
+        volumes:
+            - vue-cli-node-volume:/app/my_app_pj/node_modules
+
+            - .:/app/
+
+        stdin_open: true
+        tty: true
+        
