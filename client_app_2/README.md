@@ -1,4 +1,4 @@
-# my_app_pj
+# client_app_2
 
 ## Project setup
 ```

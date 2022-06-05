@@ -13,7 +13,7 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - vue-cli-node-volume:/app/my_app_pj/node_modules
+            - vue-cli-node-volume:/app/client_app_2/node_modules
 
             - .:/app/
 
