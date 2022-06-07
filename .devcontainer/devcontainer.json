@@ -1,0 +1,24 @@
+{
+    // コンテナの名前
+    "name": "dev container",
+
+    // Docker Composeの設定ファイルパス
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+
+    // コンテナのサービス名
+    "service": "app",
+
+    // コンテナ内でのユーザー
+    // "remoteUser": "docker",
+
+    // VSCodeで開くコンテナ内のパス
+    "workspaceFolder": "/app/client_app_2/",
+
+    // コンテナ内で使用する拡張機能
+    "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ]
+}
