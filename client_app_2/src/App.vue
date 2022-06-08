@@ -36,6 +36,21 @@
     <v-main>
       <router-view />
     </v-main>
+    <v-footer app padless>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="(item, idx) in footerIconList"
+          :key="idx"
+          class="mx-2"
+          fab
+          :color="item.color"
+          :text="isSelectedIcon(item.id)"
+          @click="select(item.id)"
+        >
+          <span class="font-weight-bold">{{ item.name }}</span>
+        </v-btn>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
@@ -43,8 +58,43 @@
 export default {
   name: "App",
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      footerIconList: [
+        {
+          id: 1,
+          name: "可燃",
+          color: "#DD72A1",
+        },
+        {
+          id: 2,
+          name: "不燃",
+          color: "#6EB92B",
+        },
+        {
+          id: 3,
+          name: "プラ",
+          color: "#F39700",
+        },
+        {
+          id: 4,
+          name: "資源",
+          color: "#00AFEC",
+        },
+      ],
+      selectItemId: 1, // 選択済みアイコン
+    };
+  },
+  methods: {
+    // 選択済みかどうか判定
+    isSelectedIcon(iconId) {
+      return iconId !== this.selectItemId;
+    },
+    // 選択済みアイコン情報を更新
+    select(selectId) {
+      this.selectItemId = selectId;
+    },
+  },
 };
 </script>
+<style scoped></style>
