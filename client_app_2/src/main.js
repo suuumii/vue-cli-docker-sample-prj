@@ -6,6 +6,9 @@ import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
+import api from "./api.js";
+Vue.mixin(api);
+
 new Vue({
   router,
   store,
