@@ -110,6 +110,9 @@ export default {
   },
   methods: {
     async getEvents() {
+      // Loading
+      this.$store.commit("setIsLoading", true);
+
       console.log("getEvents");
       let parameter = {
         date: this.value,
@@ -119,6 +122,8 @@ export default {
         this.events = res.data;
         this.beforeEventList = _.cloneDeep(this.events);
       }
+      // Loading
+      this.$store.commit("setIsLoading", false);
     },
     getEventColor(event) {
       // 表示するイベントの色
@@ -171,10 +176,16 @@ export default {
       return event;
     },
     async saveEvent() {
+      // Loading
+      this.$store.commit("setIsLoading", true);
+
       let parameter = this.diffEventList();
       if (parameter && parameter.length > 0) {
         await this.post("/update_event", parameter);
       }
+
+      // Loading
+      this.$store.commit("setIsLoading", false);
     },
     diffEventList() {
       let saveEventList = [];

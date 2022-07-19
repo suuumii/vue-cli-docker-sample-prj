@@ -25,6 +25,8 @@
       </v-btn>
     </v-app-bar>
 
+    <loadingIcon />
+
     <v-main>
       <router-view />
     </v-main>
@@ -32,8 +34,13 @@
 </template>
 
 <script>
+import loadingIcon from "@/components/LoadingIcon.vue";
+
 export default {
   name: "App",
+  components: {
+    loadingIcon,
+  },
 };
 </script>
 <style>
