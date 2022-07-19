@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppHeader />
+    <appHeader />
     <loadingIcon />
     <v-main>
       <router-view />
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import AppHeader from "@/components/AppHeader.vue";
+import appHeader from "@/components/AppHeader.vue";
 import loadingIcon from "@/components/LoadingIcon.vue";
 
 export default {
   name: "App",
   components: {
-    AppHeader,
+    appHeader,
     loadingIcon,
   },
 };
