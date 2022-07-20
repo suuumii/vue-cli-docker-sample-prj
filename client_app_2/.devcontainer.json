@@ -1,6 +1,6 @@
 {
     // コンテナの名前
-    "name": "dev container",
+    "name": "dev client container",
 
     // Docker Composeの設定ファイルパス
     "dockerComposeFile": [
@@ -8,7 +8,7 @@
     ],
 
     // コンテナのサービス名
-    "service": "app",
+    "service": "client",
 
     // コンテナ内でのユーザー
     // "remoteUser": "docker",
@@ -21,5 +21,7 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "octref.vetur"
-    ]
+    ],
+
+    "shutdownAction": "none"
 }

@@ -4,19 +4,26 @@ volumes:
     vue-cli-node-volume:
 
 services:
-    app:
+    client:
         image: vuecli:1
         build: 
             context: .
-            dockerfile: dockerfile
+            dockerfile: client.dockerfile
         container_name: vuecli3
         ports:
             - "8080:8080"
         volumes:
             - vue-cli-node-volume:/app/client_app_2/node_modules
 
-            - .:/app/
-
+            - ./client_app_2:/app/client_app_2
         stdin_open: true
         tty: true
-        
+    server:
+        image: openjdk:15
+        container_name: openjdk15
+        ports:
+            - 65001:65001
+        volumes:
+            - ./server:/srv:cached
+        stdin_open: true
+        tty: true
