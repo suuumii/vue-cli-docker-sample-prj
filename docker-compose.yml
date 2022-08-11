@@ -14,7 +14,6 @@ services:
             - "8080:8080"
         volumes:
             - vue-cli-node-volume:/app/client_app_2/node_modules
-
             - ./client_app_2:/app/client_app_2
         stdin_open: true
         tty: true
@@ -27,3 +26,13 @@ services:
             - ./server:/srv:cached
         stdin_open: true
         tty: true
+    mysql:
+        build: 
+            context: .
+            dockerfile: mysql.dockerfile
+        container_name: mysql_container
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d
+            - ./mysql/db:/var/lib/mysql
