@@ -18,6 +18,11 @@
 
     // コンテナ内で使用する拡張機能
     "extensions": [
+        "vscjava.vscode-java-pack",
+        "Pivotal.vscode-spring-boot",
+        "pivotal.vscode-boot-dev-pack",
+        "gabrielbb.vscode-lombok",
+        "vscjava.vscode-lombok"
     ],
 
     "shutdownAction": "none"

@@ -18,14 +18,19 @@ services:
         stdin_open: true
         tty: true
     server:
-        image: openjdk:15
+        build: 
+            context: .
+            dockerfile: server.dockerfile
         container_name: openjdk15
         ports:
-            - 65001:65001
+            - 65001:8080
+            - 65002:5050
         volumes:
             - ./server:/srv:cached
         stdin_open: true
         tty: true
+        depends_on:
+            - mysql
     mysql:
         build: 
             context: .
@@ -34,5 +39,5 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - ./init:/docker-entrypoint-initdb.d
+            - ./mysql/seed:/docker-entrypoint-initdb.d
             - ./mysql/db:/var/lib/mysql
