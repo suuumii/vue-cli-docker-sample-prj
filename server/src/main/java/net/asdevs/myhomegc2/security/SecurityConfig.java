@@ -15,15 +15,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         // 認証
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/crypt").permitAll()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/crypt").permitAll()
                 .antMatchers("/public/**").permitAll()
-                .antMatchers("/api/**").permitAll();
-                // .antMatchers("/api/**").authenticated();
+                .antMatchers("/api/**").authenticated();
         // 独自フィルターの利用
         // デフォルトのAuthenticationManagerを利用する
         http.addFilter(new AuthenticationFilter(authenticationManager()));
+        http.addFilterAfter(new LoginFilter(), AuthenticationFilter.class);
         // csrfを無効にしておく
         // またCookieを利用してcsrf対策を行う
         http.csrf().ignoringAntMatchers("/api/**");
