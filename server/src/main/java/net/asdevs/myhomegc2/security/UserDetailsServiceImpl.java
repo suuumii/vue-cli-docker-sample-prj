@@ -21,10 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
+            System.out.println(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("root"));
             ScUsersEntity outEntity = scUsersMapper.findByName(username);
             return new User(outEntity.getName(), PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(outEntity.getPassword()), new ArrayList<>());
         } catch (Exception e) {
-            throw new UsernameNotFoundException("ユーザが見つかりません");
+            throw new UsernameNotFoundException("ユーザが見つかりません", e);
         }
     }
     

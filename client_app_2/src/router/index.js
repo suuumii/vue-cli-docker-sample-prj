@@ -1,14 +1,30 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/homeView/HomeView.vue";
+import LoginForm from "@/views/homeView/LoginForm";
+import gcCalendar from "@/views/homeView/_gcCalendar.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    redirect: "/login",
+  },
+  {
+    path: "",
     name: "home",
     component: HomeView,
+    children: [
+      {
+        path: "login",
+        component: LoginForm,
+      },
+      {
+        path: "calendar",
+        component: gcCalendar,
+      },
+    ],
   },
   {
     path: "/about",

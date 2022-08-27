@@ -118,7 +118,7 @@ export default {
         date: this.value,
       };
       const res = await this.post("/get_event", parameter);
-      if (res.status === 200) {
+      if (res && res.status === 200) {
         this.events = res.data;
         this.beforeEventList = _.cloneDeep(this.events);
       }
@@ -188,7 +188,7 @@ export default {
       this.$store.commit("setIsLoading", false);
     },
     diffEventList() {
-      let saveEventList = [];
+      let saveEventList = []; // リクエストパラメータ
 
       let cnt = this.events.length;
       for (let i = 0; i < cnt; i++) {
