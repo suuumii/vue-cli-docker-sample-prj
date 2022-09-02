@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-// @RequestMapping(value = "/crypt", method = RequestMethod.POST)
 @ResponseBody
 @Controller
 public class LoginController {
     @GetMapping("/api/test")
     public String test(){
-        return "認証が成功しています";
+        return "success!";
     }
     @RequestMapping(value = "/api/crypt", method = RequestMethod.POST)
     public String crypt(@RequestBody String body) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(body);
+    }
+
+    @RequestMapping(value = "/api/get_event", method = RequestMethod.POST)
+    public String getEvent(@RequestBody String body) {
+        return body;
     }
 }
