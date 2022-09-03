@@ -25,7 +25,11 @@
         "
         v-model="value"
         :events="events"
-        :event-color="getEventColor"
+        :event-color="
+          (event) => {
+            return event.color;
+          }
+        "
         @click:event="showEvent"
         @click:date="clickedDay"
         @change="getEvents"
@@ -121,14 +125,18 @@ export default {
       if (res && res.status === 200) {
         this.events = res.data;
         this.beforeEventList = _.cloneDeep(this.events);
+        this.setEventNameAndColor();
       }
+
       // Loading
       this.$store.commit("setIsLoading", false);
     },
-    getEventColor(event) {
-      // 表示するイベントの色
-      let icon = this.iconList.find((i) => i.id === event.id);
-      return icon.color;
+    setEventNameAndColor() {
+      this.events.forEach((event) => {
+        let icon = this.iconList.find((i) => i.id === event.id);
+        event.name = icon.name;
+        event.color = icon.color;
+      });
     },
     setToday() {
       this.value = moment().format("yyyy-MM-DD");
@@ -166,10 +174,11 @@ export default {
     },
     createEventForCalendar(date, garbage) {
       // calendarに登録するeventの生成
-      let name = this.iconList.find((i) => i.id === garbage).name;
+      let icon = this.iconList.find((i) => i.id === garbage);
       let event = {
-        name: name,
+        name: icon.name,
         id: garbage,
+        color: icon.color,
         start: date,
         timed: false,
       };

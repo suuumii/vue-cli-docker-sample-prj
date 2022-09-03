@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.asdevs.myhomegc2.repository.GetEventMapper">
+    <select id="getEvents" resultType="net.asdevs.myhomegc2.repository.entity.GetEventOutEntity">
+        SELECT 
+            gc_Date AS gcDate,
+            gc_id AS GcId
+        FROM
+            tr_gc_calendar
+        WHERE
+            del_flg = 0
+            AND gc_date BETWEEN #{startDate, jdbcType=VARCHAR} AND #{endDate, jdbcType=VARCHAR};
+    </select>
+</mapper>

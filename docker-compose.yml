@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
     vue-cli-node-volume:
+    server-target-volume:
 
 services:
     client:
@@ -26,6 +27,7 @@ services:
             - 65001:8080
             - 65002:5050
         volumes:
+            - server-target-volume:/srv/target
             - ./server:/srv:cached
         stdin_open: true
         tty: true
