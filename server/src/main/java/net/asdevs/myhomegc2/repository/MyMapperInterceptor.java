@@ -21,7 +21,8 @@ import lombok.RequiredArgsConstructor;
 public class MyMapperInterceptor {
 
     @Before("execution(* net.asdevs.myhomegc2.repository.*Mapper.insert*(..)) || "
-            + "execution(* net.asdevs.myhomegc2.repository.*Mapper.update*(..))")
+            + "execution(* net.asdevs.myhomegc2.repository.*Mapper.update*(..)) || "
+            + "execution(* net.asdevs.myhomegc2.repository.*Mapper.delete*(..))")
     public void setValueToCommonColumn(JoinPoint joinPoint) throws Exception {
         // メソッド名を取得
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
@@ -37,7 +38,7 @@ public class MyMapperInterceptor {
             String createduser = SecurityContextHolder.getContext().getAuthentication().getName();
             setCreated(obj, created, createduser);
             setModified(obj, created, createduser);
-        } else if (methodName.startsWith("update")) {
+        } else if (methodName.startsWith("update") || methodName.startsWith("delete")) {
             // メソッド名がupdateから始まる場合
             String modified = LocalDateTime.now(ZoneOffset.UTC).toString();
             String modifiedUser = SecurityContextHolder.getContext().getAuthentication().getName();

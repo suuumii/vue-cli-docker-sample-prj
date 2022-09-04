@@ -22,5 +22,29 @@
         )
         ;
     </insert>
+    <update id="updateEvent">
+        UPDATE
+            tr_gc_calendar
+        SET
+            gc_id = #{gcId, jdbcType = INTEGER},
+            modified = #{modified, jdbcType = VARCHAR},
+            modified_user = #{modifiedUser, jdbcType = VARCHAR}
+        WHERE
+            gc_date = #{gcDate, jdbcType = VARCHAR}
+            AND del_flg = 0
+        ;
+    </update>
+    <update id="deleteEvent">
+        UPDATE
+            tr_gc_calendar
+        SET
+            del_flg = 1,
+            modified = #{modified, jdbcType = VARCHAR},
+            modified_user = #{modifiedUser, jdbcType = VARCHAR}
+        WHERE
+            gc_date = #{gcDate, jdbcType = VARCHAR}
+            AND del_flg = 0
+        ;
+    </update>
 </mapper>
 
