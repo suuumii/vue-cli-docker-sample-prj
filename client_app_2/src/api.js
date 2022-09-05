@@ -16,6 +16,13 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          window.alert(error);
+          if (error.response.status == 403) {
+            this.$router.push({
+              name: "login",
+              params: {},
+            });
+          }
         });
     },
   },

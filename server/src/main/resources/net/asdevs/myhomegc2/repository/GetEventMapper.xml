@@ -11,4 +11,17 @@
             del_flg = 0
             AND gc_date BETWEEN #{startDate, jdbcType=VARCHAR} AND #{endDate, jdbcType=VARCHAR};
     </select>
+    <select id="getEventThisDay" resultType="net.asdevs.myhomegc2.repository.entity.GetEventThisDayOutEntity">
+        SELECT
+            A.gc_date AS gcDate,
+            B.gc_name AS gcName
+        FROM tr_gc_calendar AS A
+        INNER JOIN mt_gc AS B
+        ON B.gc_id = A.gc_id
+        AND B.del_flg = 0
+        WHERE
+            A.del_flg = 0
+            AND A.gc_date = #{gcDate, jdbcType=VARCHAR}
+        ;
+    </select>
 </mapper>

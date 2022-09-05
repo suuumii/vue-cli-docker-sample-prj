@@ -18,6 +18,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
@@ -41,7 +42,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             String token = JWT.create()
                     .withIssuer("net.asdevs.myhomegc2") // 発行者
                     .withClaim("username", ex.getName())
-                    .sign(Algorithm.HMAC256("secrethogehoge")); // アルゴリズム指定
+                    .sign(Algorithm.HMAC256("secretgc2app")); // アルゴリズム指定
             res.setHeader("X-AUTH-TOKEN", "Bearer " + token); // tokeをX-AUTH-TOKENにセット
             res.setStatus(200);
         });

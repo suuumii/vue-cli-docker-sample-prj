@@ -193,6 +193,8 @@ export default {
         await this.post("/update_event", parameter);
       }
 
+      this.getEvents();
+
       // Loading
       this.$store.commit("setIsLoading", false);
     },

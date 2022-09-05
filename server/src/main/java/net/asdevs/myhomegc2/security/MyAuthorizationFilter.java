@@ -31,7 +31,7 @@ public class MyAuthorizationFilter extends OncePerRequestFilter {
         String token = header.substring(7);
         System.out.println("token: "+token);
         // Tokenの検証と認証
-        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256("secrethogehoge")).build().verify(token);
+        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256("secretgc2app")).build().verify(token);
         // usernameの取得
         String username = decodedJWT.getClaim("username").asString();
         // ログイン状態を設定
